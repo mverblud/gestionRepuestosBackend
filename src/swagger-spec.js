@@ -10,8 +10,8 @@ const specs = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'Docs API Gestion Repuestos',
-            description: 'This is a sample server for a pet store.',
+            title: 'Docs API Gestión de Repuestos',
+            description: 'Encontras toda las infomación relacionada a las API existentes',
             contact: {
                 name: "API Support",
                 email: "marcosverblud@gmail.com"
