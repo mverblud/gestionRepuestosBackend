@@ -1,16 +1,17 @@
-import express from "express";
-import dotenv from  "dotenv";
-import cors from "cors"
+import express   from "express";
+import dotenv    from  "dotenv";
+import cors      from "cors"
 import swaggerUI from 'swagger-ui-express';
-import swaggerSpecs from './swagger-spec.js';
-import authRoutes from "./routes/authRoutes.js";
+
+import swaggerSpecs    from './swagger-spec.js';
 import RouterProductos from './routes/productos.js';
-import RouterAuth from './routes/authRoutes.js';
-import conectarDB from "./database/config.js";
+import RouterAuth      from './routes/auth.js';
+import conectarDB      from "./database/config.js";
 
 // Server
 const app = express();
 app.use(express.json());
+
 dotenv.config();
 
 conectarDB();
@@ -22,13 +23,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 const routerProductos = new RouterProductos();
-const routerAuth = new RouterAuth();
+const routerAuth      = new RouterAuth();
 
-app.use('/api/auth',routerAuth.start());
+app.use('/api/auth'     , routerAuth.start());
 app.use('/api/productos', routerProductos.start());
-
 // Documentacion API
-app.use('/api/docs', swaggerUI.serve,swaggerUI.setup(swaggerSpecs));
+app.use('/api/docs'     , swaggerUI.serve,swaggerUI.setup(swaggerSpecs));
 
 const PORT = process.env.PORT || 7000;
 

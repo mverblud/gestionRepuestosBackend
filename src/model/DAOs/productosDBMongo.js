@@ -1,11 +1,8 @@
-import productosDTO from '../DTOs/productos.js';
-import ProductoBaseDAO from './productos.js';
 import Producto from '../models/productos.js';
 
-export default class ProductoDBMongoDAO extends ProductoBaseDAO {
+export default class ProductoDBMongoDAO {
 
     constructor() {
-        super();
         this._collection = Producto;
     };
 

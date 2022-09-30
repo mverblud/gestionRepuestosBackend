@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import authDBMongoDAO from '../model/DAOs/authDBMongo.js';
 
 export default class ApiAuth {

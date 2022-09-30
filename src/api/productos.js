@@ -1,12 +1,9 @@
-import dotenv from "dotenv";
-import ProductosFactoryDAO from '../model/DAOs/productoFactory.js';
-
-dotenv.config();
+import ProductosDBMongo from '../model/DAOs/productosDBMongo.js';
 
 export default class ApiProductos {
 
     constructor() {
-        this.productoDAO = ProductosFactoryDAO.get(process.env.TIPO_PRESISTENCIA);
+        this.productoDAO = new ProductosDBMongo();
     };
 
     async obtenerProducto(id) { return await this.productoDAO.obtenerProducto(id) };

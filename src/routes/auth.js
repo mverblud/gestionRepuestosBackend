@@ -1,6 +1,5 @@
 import express from "express";
 import { check } from "express-validator";
-import { confirmarUsuario, registrarUsuario } from "../controllers/authController.js";
 import validarCampos from "../middlewares/validar-campos.js";
 import { emailExiste } from "../helpers/dbValidators.js"
 

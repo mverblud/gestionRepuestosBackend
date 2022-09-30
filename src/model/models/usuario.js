@@ -14,7 +14,7 @@ const UsuarioSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, 'El correo es obligatorio'],
+        required: [true, 'El email es obligatorio'],
         unique: true,
         trim: true
     },
@@ -45,7 +45,7 @@ const UsuarioSchema = mongoose.Schema({
 
 // Muestro la info que necesito
 UsuarioSchema.methods.toJSON = function () {
-    const { __v, password, _id, ...usuario } = this.toObject();
+    const { __v, password, _id, token, ...usuario } = this.toObject();
     usuario.uid = _id;
     return usuario;
 }
