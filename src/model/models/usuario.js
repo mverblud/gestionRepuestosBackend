@@ -2,46 +2,51 @@ import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import generarTokenId from '../../helpers/generarTokenId.js';
 
-const UsuarioSchema = mongoose.Schema({
-    nombre: {
-        type: String,
-        required: [true, 'El nombre es obligatorio'],
-        trim: true
+const UsuarioSchema = mongoose.Schema(
+    {
+        nombre: {
+            type: String,
+            required: [true, 'El nombre es obligatorio'],
+            trim: true
+        },
+        password: {
+            type: String,
+            required: [true, 'La Contraseña es obligatorio'],
+        },
+        email: {
+            type: String,
+            required: [true, 'El email es obligatorio'],
+            unique: true,
+            trim: true
+        },
+        rol: {
+            type: String,
+            required: true,
+            enum: ['ADMIN_ROLE', 'USER_ROLE'],
+            default: 'USER_ROLE'
+        },
+        telefono: {
+            type: String,
+            default: null,
+            trim: true
+        },
+        token: {
+            type: String,
+            default: generarTokenId(),
+        },
+        confirmado: {
+            type: Boolean,
+            default: false,
+        },
+        google: {
+            type: Boolean,
+            default: false,
+        }
     },
-    password: {
-        type: String,
-        required: [true, 'La Contraseña es obligatorio'],
-    },
-    email: {
-        type: String,
-        required: [true, 'El email es obligatorio'],
-        unique: true,
-        trim: true
-    },
-    rol: {
-        type: String,
-        required: true,
-        enum: ['ADMIN_ROLE', 'USER_ROLE'],
-        default: 'USER_ROLE'
-    },
-    telefono: {
-        type: String,
-        default: null,
-        trim: true
-    },
-    token: {
-        type: String,
-        default: generarTokenId(),
-    },
-    confirmado: {
-        type: Boolean,
-        default: false,
-    },
-    google: {
-        type: Boolean,
-        default: false,
-    },
-});
+    {
+        timestamps: true
+    }
+);
 
 // Muestro la info que necesito
 UsuarioSchema.methods.toJSON = function () {
