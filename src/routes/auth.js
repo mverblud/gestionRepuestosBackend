@@ -21,8 +21,15 @@ export default class RouterAuth {
             check('email').custom(emailExiste),
             validarCampos
         ], this.controladorAuth.registrarUsuario);
-
         router.get('/confirmar/:token', this.controladorAuth.confirmarUsuario);
+
+        router.post('/login', this.controladorAuth.autenticar);
+        router.post('/olvide-password', this.controladorAuth.olvidePassword);
+        router.get('/olvide-password/:token', this.controladorAuth.comprobarPassword);
+        router.post('/olvide-password/:token',[
+            check('password', 'El Password debe ser mas de 6 letras').isLength({ min: 6 }),
+            validarCampos
+        ] , this.controladorAuth.nuevoPassword);
 
         return router;
     }
