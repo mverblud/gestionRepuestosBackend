@@ -1,6 +1,7 @@
 import express from "express";
 import { check } from "express-validator";
 import validarCampos from "../middlewares/validar-campos.js";
+import validarJWT from "../middlewares/authMiddleware.js";
 import { existeProducto } from "../helpers/dbValidators.js"
 
 /**
@@ -231,22 +232,23 @@ export default class RouterProductos {
 
     start() {
         router.get('/:id', [
+            validarJWT,
             check('id', 'No es un un ID válido').isMongoId(),
             check('id').custom(existeProducto),
             validarCampos
         ], this.controladorProductos.obtenerProducto);
 
-        router.get('/', this.controladorProductos.obtenerProductos);
+        router.get('/', validarJWT, this.controladorProductos.obtenerProductos);
 
         router.put('/:id', [
-            //    validarJWT,
+            validarJWT,
             check('id', 'No es un un ID válido').isMongoId(),
             check('id').custom(existeProducto),
             validarCampos
         ], this.controladorProductos.actualizarProducto);
 
         router.post('/', [
-            //    validarJWT,
+            validarJWT,
             check('codigo', 'El codigo es obligatorio').not().isEmpty(),
             check('nombre', 'El nombre es obligatorio').not().isEmpty(),
             check('marcaProducto', 'La marca producto es obligatorio').not().isEmpty(),
@@ -262,7 +264,7 @@ export default class RouterProductos {
         ], this.controladorProductos.guardarProducto);
 
         router.delete('/:id', [
-            //    validarJWT,
+            validarJWT,
             //    esAdminRole,
             check('id', 'No es un un ID válido').isMongoId(),
             check('id').custom(existeProducto),
