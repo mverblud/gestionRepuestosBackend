@@ -1,7 +1,7 @@
 import express from "express";
 import { check } from "express-validator";
 import validarCampos from "../middlewares/validar-campos.js";
-import validarJWT from "../middlewares/authMiddleware.js";
+import validarJWT from "../middlewares/validarJWT.js";
 import { existeProducto } from "../helpers/dbValidators.js"
 
 /**
