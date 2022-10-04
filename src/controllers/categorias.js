@@ -38,7 +38,7 @@ export default class ControllerCategorias {
                 const { msg, status } = categoria;
                 res.status(status).json({ msg })
             } else {
-                res.json(categoria);
+                res.json(categoria.categoria);
             }
         } catch (error) {
             console.log('error actualizarCategoria', error);

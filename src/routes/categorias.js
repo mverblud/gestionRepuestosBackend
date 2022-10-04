@@ -22,7 +22,7 @@ export default class RouterCategorias {
             validarCampos
         ], this.controladorCategorias.obtenerCategoria);
 
-        router.get('/', this.controladorCategorias.obtenerCategorias);
+        router.get('/', validarJWT, this.controladorCategorias.obtenerCategorias);
 
         router.put('/:id', [
             validarJWT,

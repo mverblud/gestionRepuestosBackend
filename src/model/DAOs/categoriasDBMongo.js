@@ -37,20 +37,9 @@ export default class CategoriaDBMongoDAO {
     };
 
     actualizarCategoria = async (_id, body) => {
-
-        const { nombre } = body;
         try {
-            if (nombre) {
-                const categoriaDB = await this._collection.findOne({ nombre });
-                if (categoriaDB) {
-                    return {
-                        status: 400,
-                        msg: `La Categoria ${categoriaDB.nombre}, ya existe`
-                    }
-                }
-            }
-
-            const categoria = await this._collection.findByIdAndUpdate(id, body, { new: true });
+            const { estado, habilitado, ...data } = body;
+            const categoria = await this._collection.findByIdAndUpdate(_id, data, { new: true });
             return {
                 status: 200,
                 categoria
@@ -72,7 +61,7 @@ export default class CategoriaDBMongoDAO {
             if (categoriaDB) {
                 return {
                     status: 400,
-                    msg: `La Categoria con el codigo: ${categoriaDB.codigo}, ya existe`
+                    msg: `La Categoria con el codigo: ${categoriaDB.nombre}, ya existe`
                 }
             }
 

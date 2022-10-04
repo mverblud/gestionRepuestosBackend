@@ -9,7 +9,7 @@ export default class ProductoDBMongoDAO {
     obtenerProducto = async _id => {
         try {
             const producto = await this._collection.findOne({ _id })
-            //    .populate('categoria', 'nombre')
+                .populate('categoria', 'nombre')
             //    .populate('marcaAuto', 'nombre')
             //    .populate('marcaProducto', 'nombre')
             return producto;
@@ -24,7 +24,7 @@ export default class ProductoDBMongoDAO {
             const [total, productos] = await Promise.all([
                 this._collection.countDocuments(query),
                 this._collection.find(query)
-                    //        .populate('categoria', 'nombre')
+                    .populate('categoria', 'nombre')
                     //        .populate('marcaAuto', 'nombre')
                     //        .populate('marcaProducto', 'nombre')
                     .skip(Number(desde))
