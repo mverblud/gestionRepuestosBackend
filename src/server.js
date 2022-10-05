@@ -6,6 +6,7 @@ import swaggerUI from 'swagger-ui-express';
 import swaggerSpecs     from './swagger-spec.js';
 import conectarDB       from "./database/config.js";
 import RouterAuth       from './routes/auth.js';
+import RouterCarritos   from './routes/carritos.js';
 import RouterCategorias from './routes/categorias.js';
 import RouterProductos  from './routes/productos.js';
 
@@ -25,10 +26,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 const routerAuth       = new RouterAuth();
+const routerCarritos   = new RouterCarritos();
 const routerCategorias = new RouterCategorias();
 const routerProductos  = new RouterProductos();
 
 app.use('/api/auth'      , routerAuth.start());
+app.use('/api/carritos'  , routerCarritos.start());
 app.use('/api/categorias', routerCategorias.start());
 app.use('/api/productos' , routerProductos.start());
 
