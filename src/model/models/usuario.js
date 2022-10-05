@@ -50,7 +50,7 @@ const UsuarioSchema = mongoose.Schema(
 
 // Muestro la info que necesito
 UsuarioSchema.methods.toJSON = function () {
-    const { __v, password, _id, token, ...usuario } = this.toObject();
+    const { __v, password, _id, /*token devuelvo el token para poder confirmar por POSTMAN*/ ...usuario } = this.toObject();
     usuario.uid = _id;
     return usuario;
 }
