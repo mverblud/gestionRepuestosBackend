@@ -44,7 +44,6 @@ app.use('/api/productos' , routerProductos.start());
 app.use('/api/docs', swaggerUI.serve,swaggerUI.setup(swaggerSpecs));
 
 const PORT = process.env.PORT || 7000;
-
 const server = app.listen(PORT, () => {
     console.log(`Servidor funcionando en el puerto ${PORT}`);
 });
