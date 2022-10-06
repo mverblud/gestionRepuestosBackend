@@ -1,5 +1,4 @@
 # Proyecto Final Coderhouse
-
 ### API Gestión de Respuestos.
 Arquitectura en capas con patron MVC.
 #### Librerias utilizadas.
